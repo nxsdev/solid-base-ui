@@ -12,3 +12,9 @@ Lint policy for Solid is `oxlint` + `eslint-plugin-solid` (via `jsPlugins`).
 Enforce Solid best-practice rules first (`prefer-for`, `no-destructure`, `no-react-*`).
 Add project restrictions for Solid 2 migration (`no-restricted-imports`) and run migration guards in `packages/solid` lint.
 Use `Vitest` as the primary testing framework.
+
+# Git Workflow
+
+When creating commits in this repository, use a type prefix in the subject line.
+Preferred prefixes are `fix:`, `refactor:`, `feat:`, `test:`, `docs:`, and `chore:`.
+Do not create bare commit subjects without one of these prefixes.
