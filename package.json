@@ -1,0 +1,36 @@
+{
+    "name": "@solid-base-ui/monorepo",
+    "version": "0.0.0",
+    "private": true,
+    "packageManager": "pnpm@10.4.1",
+    "scripts": {
+        "preinstall": "npx only-allow pnpm",
+        "build": "turbo run build",
+        "dev": "turbo run dev --parallel",
+        "test": "turbo run test",
+        "test:watch": "turbo run test -- --watch",
+        "lint": "turbo run lint",
+        "lint:fix": "turbo run lint:fix",
+        "format": "turbo run format",
+        "format:write": "turbo run format:write",
+        "typecheck": "turbo run typecheck",
+        "check": "pnpm lint && pnpm format && pnpm test && pnpm typecheck"
+    },
+    "devDependencies": {
+        "@solidjs/testing-library": "latest",
+        "@solidjs/web": "2.0.0-beta.1",
+        "@types/node": "latest",
+        "eslint": "^9.39.3",
+        "eslint-plugin-solid": "^0.14.5",
+        "jsdom": "latest",
+        "only-allow": "^1.2.1",
+        "oxfmt": "latest",
+        "oxlint": "latest",
+        "solid-js": "2.0.0-beta.1",
+        "turbo": "^2.5.8",
+        "typescript": "latest",
+        "vite": "latest",
+        "vite-plugin-solid": "latest",
+        "vitest": "latest"
+    }
+}

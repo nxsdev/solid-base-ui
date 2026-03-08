@@ -1,0 +1,67 @@
+node_modules
+.pnpm-store
+.turbo
+coverage
+dist
+build
+test-results
+test.txt
+*.tsbuildinfo
+
+# Agent-generated files (do not commit)
+/AGENTS.md
+/CLAUDE.md
+/CRUSH.md
+/WARP.md
+/firebender.json
+/opencode.json
+/.aider.conf.yml
+/.clinerules
+/.goosehints
+
+# Agent-related directories (do not commit)
+/.agent/
+/.agents/
+/.aiassistant/
+/.amazonq/
+/.augment/
+/.claude/
+/.codex/
+/.cursor/
+/.factory/
+/.gemini/
+/.idx/
+/.junie/
+/.kiro/
+/.kilocode/
+/.mistral/
+/.openhands/
+/.opencode/
+/.pi/
+/.qwen/
+/.roo/
+/.trae/
+/.vibe/
+/.warp/
+/.windsurf/
+/.zed/
+
+# Keep ruler source files tracked
+!/.ruler/
+!/.ruler/**
+
+
+# START Ruler Generated Files
+/.aiassistant/rules/AGENTS.md
+/.aiassistant/rules/AGENTS.md.bak
+/.aider.conf.yml.bak
+/.claude/skills
+/.clinerules.bak
+/.codex/config.toml
+/.codex/config.toml.bak
+/.codex/skills
+/.cursor/skills
+/.gemini/skills
+/AGENTS.md.bak
+/CLAUDE.md.bak
+# END Ruler Generated Files

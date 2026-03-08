@@ -1,0 +1,21 @@
+default_agents = [
+  "agentsmd",
+  "aider",
+  "claude",
+  "cline",
+  "codex",
+  "copilot",
+  "cursor",
+  "gemini-cli",
+  "jetbrains-ai",
+  "windsurf"
+]
+
+nested = false
+
+[gitignore]
+enabled = true
+local = false
+
+[skills]
+enabled = true

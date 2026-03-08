@@ -1,0 +1,63 @@
+{
+  "$schema": "./node_modules/oxlint/configuration_schema.json",
+  "jsPlugins": [
+    {
+      "name": "solid",
+      "specifier": "eslint-plugin-solid"
+    }
+  ],
+  "plugins": ["typescript", "vitest", "unicorn"],
+  "categories": {
+    "correctness": "error",
+    "suspicious": "error"
+  },
+  "rules": {
+    "@typescript-eslint/no-explicit-any": "error",
+    "vitest/no-focused-tests": "error",
+    "unicorn/filename-case": "off",
+    "unicorn/no-array-sort": "off",
+    "solid/jsx-no-duplicate-props": "error",
+    "solid/jsx-no-undef": "error",
+    "solid/no-unknown-namespaces": "error",
+    "solid/no-innerhtml": "error",
+    "solid/jsx-no-script-url": "error",
+    "solid/no-destructure": "error",
+    "solid/prefer-for": "error",
+    "solid/no-react-deps": "error",
+    "solid/no-react-specific-props": "error",
+    "no-restricted-imports": [
+      "error",
+      {
+        "paths": [
+          {
+            "name": "solid-js/web",
+            "message": "Solid 2: use @solidjs/web."
+          },
+          {
+            "name": "solid-js/store",
+            "message": "Solid 2: store APIs moved to solid-js."
+          },
+          {
+            "name": "solid-js",
+            "importNames": [
+              "batch",
+              "createResource",
+              "mergeProps",
+              "splitProps",
+              "startTransition",
+              "unwrap",
+              "useTransition"
+            ],
+            "message": "Solid 2 migration: avoid legacy APIs in this repository."
+          }
+        ]
+      }
+    ],
+    "solid/event-handlers": "warn",
+    "solid/style-prop": "warn",
+    "solid/self-closing-comp": "warn",
+    "solid/imports": "warn",
+    "vitest/no-disabled-tests": "error"
+  },
+  "ignorePatterns": ["node_modules", "dist", "build", "coverage", ".turbo"]
+}
