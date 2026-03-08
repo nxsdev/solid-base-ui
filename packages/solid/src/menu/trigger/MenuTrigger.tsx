@@ -169,7 +169,7 @@ export function MenuTrigger<Payload = unknown>(props: MenuTrigger.Props<Payload>
         }
 
         setOpenedByPress(() => false);
-        menuStore.requestOpen(resolvedId(), event, "trigger-press");
+        menuStore.requestOpen(resolvedId(), event, "trigger-hover");
       }, hoverDelay());
     },
     onPointerLeave(event) {

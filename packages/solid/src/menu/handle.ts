@@ -45,7 +45,10 @@ export class MenuHandle<Payload = unknown> {
 
 export type MenuChangeEventReason =
   | "trigger-press"
+  | "trigger-hover"
   | "outside-press"
+  | "item-press"
+  | "link-press"
   | "escape-key"
   | "close-press"
   | "focus-out"

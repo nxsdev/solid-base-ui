@@ -185,7 +185,7 @@ export function MenuSubmenuTrigger(props: MenuSubmenuTrigger.Props) {
           return;
         }
 
-        menuRootContext().store.requestOpen(triggerId, event, "trigger-press");
+        menuRootContext().store.requestOpen(triggerId, event, "trigger-hover");
       }, hoverDelay());
     },
     onPointerLeave(event) {

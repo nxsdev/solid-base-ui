@@ -2,6 +2,7 @@ import { createContext, useContext, type Accessor } from "solid-js";
 import type { MenuStateRecord } from "./MenuRoot";
 import type { MenuHandleStore } from "../handle";
 import type { MenuRoot } from "./MenuRoot";
+import type { MenuChangeEventReason } from "../handle";
 
 export type MenuInteractionType = "mouse" | "touch" | "pen" | "keyboard";
 
@@ -21,6 +22,7 @@ export interface MenuRootContextValue {
   openedSubmenuIndex: Accessor<number | null>;
   requestedFocusStrategy: Accessor<MenuRoot.FocusStrategy | null>;
   openInteractionType: Accessor<MenuInteractionType | null>;
+  lastOpenChangeReason: Accessor<MenuChangeEventReason>;
   acquireSubmenuStateRecord<Payload = unknown>(
     branchId: string,
     initialOpen: boolean,

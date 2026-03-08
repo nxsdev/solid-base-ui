@@ -10,7 +10,7 @@ import {
 } from "solid-js";
 import type { BaseUIChangeEventDetails } from "../../types";
 import { createChangeEventDetails } from "../../utils/createChangeEventDetails";
-import type { MenuHandle, MenuHandleStore } from "../handle";
+import type { MenuChangeEventReason, MenuHandle, MenuHandleStore } from "../handle";
 import { resolveBoolean } from "../../utils/resolveBoolean";
 import { useMenuSubmenuRootContext } from "../submenu-root/MenuSubmenuRootContext";
 import {
@@ -32,6 +32,7 @@ interface MenuStateSnapshot<Payload = unknown> {
   popupId: string | undefined;
   popupElement: HTMLElement | null;
   openInteractionType: MenuInteractionType | null;
+  lastOpenChangeReason: MenuChangeEventReason;
   requestedFocusStrategy: MenuRoot.FocusStrategy | null;
   initialFocusResolver: (() => HTMLElement | null | undefined) | null;
   finalFocusResolver: (() => HTMLElement | null | undefined) | null;
@@ -55,6 +56,8 @@ export interface MenuStateRecord<Payload = unknown> {
   setPopupElementState: Setter<HTMLElement | null>;
   openInteractionType: Accessor<MenuInteractionType | null>;
   setOpenInteractionType: Setter<MenuInteractionType | null>;
+  lastOpenChangeReason: Accessor<MenuChangeEventReason>;
+  setLastOpenChangeReason: Setter<MenuChangeEventReason>;
   requestedFocusStrategy: Accessor<MenuRoot.FocusStrategy | null>;
   setRequestedFocusStrategy: Setter<MenuRoot.FocusStrategy | null>;
   initialFocusResolver: Accessor<(() => HTMLElement | null | undefined) | null>;
@@ -117,6 +120,8 @@ export function createMenuRootState<Payload = unknown>(
     setPopupElementState,
     openInteractionType,
     setOpenInteractionType,
+    lastOpenChangeReason,
+    setLastOpenChangeReason,
     requestedFocusStrategy,
     setRequestedFocusStrategy,
     initialFocusResolver,
@@ -220,6 +225,8 @@ export function createMenuRootState<Payload = unknown>(
       setOpenInteractionType(() => null);
       setOpenedSubmenuIndexState(() => null);
     }
+
+    setLastOpenChangeReason(() => reason);
 
     if (props.open === undefined) {
       setOpenState(() => nextOpen);
@@ -442,6 +449,7 @@ export function createMenuRootState<Payload = unknown>(
     openedSubmenuIndex: openedSubmenuIndexState,
     requestedFocusStrategy,
     openInteractionType,
+    lastOpenChangeReason,
     acquireSubmenuStateRecord<TSubmenuPayload = unknown>(
       branchId: string,
       initialOpen: boolean,
@@ -531,7 +539,10 @@ export type MenuRootActions = {
 };
 export type MenuRootChangeEventReason =
   | "trigger-press"
+  | "trigger-hover"
   | "outside-press"
+  | "item-press"
+  | "link-press"
   | "escape-key"
   | "close-press"
   | "focus-out"
@@ -637,6 +648,7 @@ function createMenuStateRecord<Payload = unknown>(
       popupId: undefined,
       popupElement: null,
       openInteractionType: null,
+      lastOpenChangeReason: "none",
       requestedFocusStrategy: null,
       initialFocusResolver: null,
       finalFocusResolver: null,
@@ -667,6 +679,9 @@ function createMenuStateRecordState<Payload = unknown>(
   );
   const [openInteractionType, setOpenInteractionType] = createSignal<MenuInteractionType | null>(
     initialState.openInteractionType,
+  );
+  const [lastOpenChangeReason, setLastOpenChangeReason] = createSignal<MenuChangeEventReason>(
+    initialState.lastOpenChangeReason,
   );
   const [requestedFocusStrategy, setRequestedFocusStrategy] =
     createSignal<MenuRoot.FocusStrategy | null>(initialState.requestedFocusStrategy);
@@ -708,6 +723,8 @@ function createMenuStateRecordState<Payload = unknown>(
     setPopupElementState,
     openInteractionType,
     setOpenInteractionType,
+    lastOpenChangeReason,
+    setLastOpenChangeReason,
     requestedFocusStrategy,
     setRequestedFocusStrategy,
     initialFocusResolver,
