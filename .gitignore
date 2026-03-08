@@ -8,6 +8,7 @@ test-results
 test.txt
 *.tsbuildinfo
 reviews/
+.porting/
 
 # Agent-generated files (do not commit)
 /AGENTS.md

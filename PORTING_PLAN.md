@@ -7,8 +7,8 @@ All implementation work must follow this plan before adding components.
 
 Implementation-level add/omit rationale is tracked in:
 
-- `porting/IMPLEMENTATION_DECISIONS.md`
-- Per-component checklist template: `porting/checklists/_template.md`
+- `.porting/IMPLEMENTATION_DECISIONS.md`
+- Per-component checklist template: `.porting/checklists/_template.md`
 - PR template linkage: `.github/PULL_REQUEST_TEMPLATE.md`
 
 When behavior is adapted for Solid, update that file in the same change.

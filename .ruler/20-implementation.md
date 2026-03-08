@@ -56,3 +56,17 @@ Prefer Solid 2 official helpers (`omit`, `merge`) over custom prop-filtering/mer
 - `solid/jsx-uses-vars` is currently isolated as `off` because oxlint JS plugin runtime misses `context.markVariableAsUsed`.
 - Keep `no-restricted-imports` for Solid 2 migration-sensitive APIs (`solid-js/web`, `solid-js/store`, and legacy imports from `solid-js`).
 - Run the Solid 2 migration script in package lint to block `.Provider` old context syntax (except explicit public APIs like `<Drawer.Provider>`) and `onMount`.
+
+10. Structural children ownership drift
+- When a structural boundary (`Root`, `Item`, `Panel`, etc.) must preserve subtree identity across parent updates, normalize children once with Solid's `children(() => props.children)`.
+- Do not combine structural children normalization with `untrack`.
+- Do not add shared helpers that freeze or otherwise alter child ownership semantics.
+
+11. Overpowered internal utilities
+- Do not introduce generic internal utilities that change reactivity or ownership semantics just because one component test passes.
+- Prefer direct Solid primitives first; add a shared helper only when it stays thin and semantically transparent.
+- For prop plumbing, prefer Solid 2 official helpers (`omit`, `merge`) over custom replacements.
+
+12. Delayed DOM listener registration
+- Browser-owned events that must exist as soon as an element mounts (for example `beforematch`) must be attached from the ref path or another render-synchronized path.
+- Do not defer these listeners to a later passive effect if correctness depends on immediate availability.
